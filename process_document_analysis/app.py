@@ -26,6 +26,7 @@ def get_kv_relationship(key_map, value_map, block_map):
         kvs[key] = val
     return kvs
 
+
 def get_line_list(blocks):
     line_list = []
     for block in blocks:
@@ -33,6 +34,7 @@ def get_line_list(blocks):
             if 'Text' in block:
                 linke_list.append(block["Text"])
     return line_list
+
 
 def get_payee_name(lines):
     payee_name = ''
