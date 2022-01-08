@@ -48,19 +48,6 @@ def get_payee_name(lines):
                 payee_line = payee_line[1: ]
             payee_name = payee_line.strip()
     return payee_name
-    
-def get_payee_name(lines):
-    payee_name = ""
-    payable_to = "payable to"
-    payee_lines = [line for line in lines if payable_to in line.lower()]
-    if len(payee_lines) > 0:
-        payee_line = payee_lines[0]
-        payee_line = payee_line.strip()
-        pos = payee_line.lower().find(payable_to)
-        if pos > -1:
-            payee_line = payee_line[pos + len(payable_to):]
-            if payee_line[0:1] == ':':
-                payee_line = payee_line[1:]
-            payee_name = payee_line.strip()
-    return payee_name
+
+
 
