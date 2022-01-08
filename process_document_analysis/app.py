@@ -35,6 +35,12 @@ def get_line_list(blocks):
     return line_list
 
 def get_payee_name(lines):
+    payee_name = ''
+    payable_to = 'payable to'
+    payee_lines = [line for line in lines if payable_to in line.lower()]
+    if len(payee_lines) > 0:
+
+def get_payee_name(lines):
     payee_name = ""
     payable_to = "payable to"
     payee_lines = [line for line in lines if payable_to in line.lower()]
