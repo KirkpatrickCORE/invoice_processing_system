@@ -26,7 +26,7 @@ def get_kv_relationship(key_map, value_map, block_map):
         kvs[key] = val
     return kvs
 
-def get-line_list(blocks):
+def get_line_list(blocks):
     line_list = []
     for block in blocks:
         if block['BlockType'] == "LINE":
