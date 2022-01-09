@@ -55,6 +55,10 @@ def get_payee_name(lines):
 def get_amount(kvs, lines):
     amount = None
     amounts = [search_value(kvs, amount_tag) for anount_tag in amount_tags if search_value(kvs, amount_tag) is not None]
+    if len(amounts) > 0:
+        amount = amounts[0]
+    else:
+        for idx, line in enumerate(lines):
 
 def get_amount(kvs, lines):
     amount = None
