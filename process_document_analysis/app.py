@@ -26,6 +26,11 @@ def get_kv_relationship(key_map, value_map, block_map):
         kvs[key] = val
     return kvs
 
+# The get_kv_relationship function merges the key and value dictionaries produced 
+# by the get_kv_map function to create a single Python key value dictionary where labels 
+# are the keys to the dictionary and the invoice’s data are the values. 
+# The handler then invokes the following get_line_list helper function:
+
 
 def get_line_list(blocks):
     line_list = []
@@ -35,9 +40,9 @@ def get_line_list(blocks):
                 linke_list.append(block["Text"])
     return line_list
 
-# Extracting payee names is more complex because the data may not be labeled. 
+ 
 # The payee may often differ from the entity sending the invoice. 
-# With the AWSTextract analysis in a format more easily consumable by Python, 
+# With the AWS Textract analysis in a format more easily consumable by Python, 
 # the following get_payee_name helper function to parse and extract the payee:
 
 def get_payee_name(lines):
