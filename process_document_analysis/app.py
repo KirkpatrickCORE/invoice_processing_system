@@ -52,4 +52,20 @@ def get_payee_name(lines):
     return payee_name
 
 
+def get_amount(kvs, lines):
+    amount = None
+    amounts = [search_value(kvs, amount_tag) for amount_tag in amount_tags if search_value(kvs, amount_tag) is not None]
+    if len(amounts) > 0:
+        amount = amounts[0]
+    else:
+        for idx, line in enumerate(lines):
+            if line.lower() in amount_tags:
+                amount = lines[idx + 1]
+                break
+    if amount is not None:
+        amount = amount.strip()
+        if amount[0:1] == '$':
+            amount = amount[1:]
+    return amount
+
 
