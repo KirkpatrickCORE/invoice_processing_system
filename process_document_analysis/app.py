@@ -64,7 +64,11 @@ def get_amount(kvs, lines):
                 break
     if amount is not None:
         amount = amount.strip()
+        if amount[0:1] == '$':
+            amount = amount[1: ]
+    return amount
 
+    
 def get_amount(kvs, lines):
     amount = None
     amounts = [search_value(kvs, amount_tag) for amount_tag in amount_tags if search_value(kvs, amount_tag) is not None]
