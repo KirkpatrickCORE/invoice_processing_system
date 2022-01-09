@@ -59,6 +59,11 @@ def get_amount(kvs, lines):
         amount = amounts[0]
     else:
         for idx, line in enumerate(lines):
+            if line.lower() in amount_tags:
+                amount = lines[idx + 1]
+                break
+    if amount is not None:
+        amount = amount.strip()
 
 def get_amount(kvs, lines):
     amount = None
