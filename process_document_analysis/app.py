@@ -16,6 +16,10 @@ def get_kv_map(blocks):
                 value_map[block_id] = block
     return key_map, value_map, block_map
 
+# The get_kv_map function is invoked by the Lambda function handler. 
+# It iterates over the “Blocks” element of the document analysis produced by AWS Textract 
+# to create dictionaries of keys (labels) and values (data) associated with each block identified by AWS Textract. 
+# It then invokes the following get_kv_relationship helper function:
 
 def get_kv_relationship(key_map, value_map, block_map):
     kvs = {}
@@ -25,6 +29,7 @@ def get_kv_relationship(key_map, value_map, block_map):
         val = get_text(value_block, block_map)
         kvs[key] = val
     return kvs
+
 
 # The get_kv_relationship function merges the key and value dictionaries produced 
 # by the get_kv_map function to create a single Python key value dictionary where labels 
