@@ -35,6 +35,10 @@ def get_line_list(blocks):
                 linke_list.append(block["Text"])
     return line_list
 
+# Extracting payee names is more complex because the data may not be labeled. 
+# The payee may often differ from the entity sending the invoice. 
+# With the AWSTextract analysis in a format more easily consumable by Python, 
+# the following get_payee_name helper function to parse and extract the payee:
 
 def get_payee_name(lines):
     payee_name = ''
@@ -51,6 +55,8 @@ def get_payee_name(lines):
             payee_name = payee_line.strip()
     return payee_name
 
+# The get_amount helper function searches the key value dictionary produced 
+# by the get_kv_relationship function to retrieve the payment amount:
 
 def get_amount(kvs, lines):
     amount = None
