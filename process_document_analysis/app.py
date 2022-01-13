@@ -2,6 +2,13 @@ import os
 import json
 import boto3
 
+s3_client = boto3.client('s3')
+dynamodb_client = boto3.client('dynamodb')
+
+due_date_tags = ["pay on or before", "payment due date", "payment due"]
+amount_tags = ["total due", "new balance total", "total current charges", "please pay"]
+
+
 def get_kv_map(blocks):
     key_map = {}
     value_map = {}
@@ -86,5 +93,5 @@ def get_amount(kvs, lines):
 
 # The amount_tags variable contains a list of possible labels associated with the payment amount:
 
-amount_tags = ["total due", "new balance total", "total current charges", "please pay"]
+
 
