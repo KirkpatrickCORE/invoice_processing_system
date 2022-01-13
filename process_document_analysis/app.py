@@ -84,5 +84,7 @@ def get_amount(kvs, lines):
             amount = amount[1: ]
     return amount
 
+# The amount_tags variable contains a list of possible labels associated with the payment amount:
 
+amount_tags = ["total due", "new balance total", "total current charges", "please pay"]
 
