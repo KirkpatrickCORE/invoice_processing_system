@@ -2,6 +2,7 @@ import os
 import json
 import boto3
 from datetime import datetime
+import re
 
 s3_client = boto3.client('s3')
 dynamodb_client = boto3.client('dynamodb')
@@ -91,8 +92,38 @@ def get_amount(kvs, lines):
         if amount[0:1] == '$':
             amount = amount[1: ]
     return amount
+'''
+def get_due_date(kvs):
+    due_date = None
+    due_dates = [search_value(kvs, due_date_tags) for due_date_tag in due_date_tags if search_value(kvs, due_date_tag) is not None]
+    if len(due_dates) > 0:
+        due_date = due_dates[0]
+    if due_date is not None:
+        date_parts = due_date.split('/')
+        if len(date_parts) == 3:
+            due_date = datetime(int(date_parts[2]), int(date_parts[0]), int(date_parts[1])).isoformat()
+        else:
+            date_parts = 
+'''
 
-# The amount_tags variable contains a list of possible labels associated with the payment amount:
+def get_due_date(kvs):
+    due_date = None
+    due_dates = [search_value(kvs, due_date_tag) for due_date_tag in due_date_tags if search_value(kvs, due_date_tag) is not None]
+    if len(due_dates) > 0:
+        due_date = due_dates[0]
+    if due_date is not None:
+        date_parts = due_date.split('/')
+        if len(date_parts) == 3:
+            due_date = datetime(int(date_parts[2]), int(date_parts[0]), int(date_parts[1])).isoformat()
+        else:
+            date_parts = [date_part for date_part in re.split("\s+|,", due_date) if len(date_part) > 0]
+            if len(date_parts) == 3:
+                datetime_object = datetime.strptime(date_parts[0], "%b")
+                month_number = datetime_object.month
+                due_date = datetime(int(date_parts[2]), int(month_number), int(date_parts[1])).isoformat()
+    else:
+        due_date = datetime.now().isoformat()
+    return due_date
 
 
 
